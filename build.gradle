@@ -42,6 +42,14 @@ dependencies {
 tasks.withType(Test)configureEach {
     useJUnitPlatform()
 
+    systemProperty 'USERNAME', System.getProperty('USERNAME', 'localUser')
+    systemProperty 'PASSWORD', System.getProperty('PASSWORD', 'localPass')
+
+    doFirst {
+        println ">>> USERNAME = ${System.getProperty('USERNAME')}"
+        println ">>> PASSWORD = ****"
+    }
+
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"

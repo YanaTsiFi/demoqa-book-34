@@ -14,11 +14,14 @@ public class LoginSpec {
     public static RequestSpecification request = with()
             .filter(withCustomTemplates())
             .contentType("application/json")
-            .log().all();
+            .log().method()
+            .log().uri()
+            .log().headers();
 
     public static ResponseSpecification response = new ResponseSpecBuilder()
             .expectStatusCode(200)
             .expectBody("token", notNullValue())
-            .log(LogDetail.ALL)
+            .log(LogDetail.STATUS)
+            .log(LogDetail.HEADERS)
             .build();
 }

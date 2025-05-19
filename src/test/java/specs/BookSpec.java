@@ -15,18 +15,14 @@ public class BookSpec {
             .contentType("application/json")
             .log().all();
 
-    public static ResponseSpecification response204 = new ResponseSpecBuilder()
-            .expectStatusCode(204)
-            .log(LogDetail.ALL)
-            .build();
+    private static ResponseSpecification spec(int status) {
+        return new ResponseSpecBuilder()
+                .expectStatusCode(status)
+                .log(LogDetail.ALL)
+                .build();
+    }
 
-    public static ResponseSpecification response201 = new ResponseSpecBuilder()
-            .expectStatusCode(201)
-            .log(LogDetail.ALL)
-            .build();
-
-    public static ResponseSpecification response200 = new ResponseSpecBuilder()
-            .expectStatusCode(200)
-            .log(LogDetail.ALL)
-            .build();
+    public static final ResponseSpecification response200 = spec(200);
+    public static final ResponseSpecification response201 = spec(201);
+    public static final ResponseSpecification response204 = spec(204);
 }
